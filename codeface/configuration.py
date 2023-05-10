@@ -20,7 +20,7 @@ Encapsulates a configuration as an immutable dict
 '''
 
 import yaml
-from collections import Mapping
+from collections.abc import Mapping
 from logging import getLogger
 from linktype import LinkType
 
