@@ -51,7 +51,7 @@ from logging import getLogger
 from linktype import LinkType
 
 log = getLogger(__name__)
-from .util import execute_command, encode_as_utf8
+from util import execute_command, encode_as_utf8
 
 class Error(Exception):
     """Base class for exceptions in this module."""
