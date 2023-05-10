@@ -36,7 +36,7 @@ from subprocess import Popen, PIPE
 from tempfile import NamedTemporaryFile, mkdtemp
 from time import sleep
 from threading import enumerate as threading_enumerate
-from Queue import Empty
+from queue import Empty
 from datetime import timedelta, datetime
 from ftfy import fix_encoding
 
@@ -124,9 +124,9 @@ class BatchJobPool(object):
         Submit jobs and wait for all jobs to finish.
         '''
         try:
-            while not all(j.done for j in self.jobs.values()):
+            while not all(j.done for j in list(self.jobs.values())):
                 # Put jobs that are ready onto the work queue
-                for j in self.jobs.values():
+                for j in list(self.jobs.values()):
                     self._submit(j)
                 # Wait for a result from the done_queues
                 for dq in self.done_queues:
@@ -191,7 +191,7 @@ def batchjob_worker_function(work_queue, done_queue):
 def get_stack_dump():
     id2name = dict([(th.ident, th.name) for th in threading_enumerate()])
     code = ["Stack dump:"]
-    for threadId, stack in sys._current_frames().items():
+    for threadId, stack in list(sys._current_frames().items()):
         code.append("")
         code.append("# Thread: %s(%d)" % (id2name.get(threadId,""), threadId))
         for filename, lineno, name, line in traceback.extract_stack(stack):
@@ -456,9 +456,9 @@ def get_analysis_windows(conf):
     window_size_months = 3
     num_window = -1
 
-    if "windowSize" in conf.keys():
+    if "windowSize" in list(conf.keys()):
         window_size_months = conf["windowSize"]
-    if "numWindows" in conf.keys():
+    if "numWindows" in list(conf.keys()):
         num_window = conf["numWindows"]
 
     return window_size_months, num_window
@@ -568,10 +568,10 @@ def encode_as_utf8(string):
     except:
         # if we have a string, we transform it to unicode
         if isinstance(string, str):
-            string = unicode(string, "unicode-escape", errors="replace")
+            string = str(string, "unicode-escape", errors="replace")
 
     ## maybe not a string/unicode at all, return rightaway
-    if not isinstance(string, unicode):
+    if not isinstance(string, str):
         return string
 
     # convert to real unicode-utf8 encoded string, fix_text ensures proper encoding
@@ -583,17 +583,17 @@ def encode_as_utf8(string):
 
     # remove all kinds of control characters and emojis
     # see: https://www.fileformat.info/info/unicode/category/index.htm
-    new_string = u"".join(ch if unicodedata.category(ch)[0] != "C" else " " for ch in new_string.decode("unicode-escape"))
+    new_string = "".join(ch if unicodedata.category(ch)[0] != "C" else " " for ch in new_string.decode("unicode-escape"))
 
     new_string = new_string.encode("utf-8")
 
     # replace any 4-byte characters with a single space (previously: four_byte_replacement)
     try:
         # UCS-4 build
-        four_byte_regex = re.compile(u"[\U00010000-\U0010ffff]")
+        four_byte_regex = re.compile("[\U00010000-\U0010ffff]")
     except re.error:
         # UCS-2 build
-        four_byte_regex = re.compile(u"[\uD800-\uDBFF][\uDC00-\uDFFF]")
+        four_byte_regex = re.compile("[\uD800-\uDBFF][\uDC00-\uDFFF]")
 
     four_byte_replacement = r" "  # r":4bytereplacement:"
     new_string = four_byte_regex.sub(four_byte_replacement, new_string.decode("utf-8")).encode("utf-8")
@@ -615,13 +615,13 @@ def encode_items_as_utf8(items):
     # unpack values if we have a dictionary
     items_unpacked = items
     if isinstance(items, dict):
-        items_unpacked = items.values()
+        items_unpacked = list(items.values())
 
     # encode each item as UTF-8 properly
-    items_enc = map(encode_as_utf8, items_unpacked)
+    items_enc = list(map(encode_as_utf8, items_unpacked))
 
     # add key for dict again
     if isinstance(items, dict):
-        items_enc = dict(zip(items.keys(), items_enc))
+        items_enc = dict(list(zip(list(items.keys()), items_enc)))
 
     return items_enc

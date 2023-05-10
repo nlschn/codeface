@@ -173,7 +173,7 @@ class Configuration(Mapping):
         return iter(self._conf)
 
     def __keys__(self):
-        return self._conf.keys()
+        return list(self._conf.keys())
 
     def __str__(self):
         '''

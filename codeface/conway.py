@@ -63,7 +63,7 @@ def get_email_from_jira(userid, jira):
     if not hasattr(user, "emailAddress"):
        user.emailAddress = ""
 
-    user_data = (user.name.lower(), fix_email_format(user.emailAddress), unicode(user.displayName))
+    user_data = (user.name.lower(), fix_email_format(user.emailAddress), str(user.displayName))
     return user_data
 
 
@@ -110,7 +110,7 @@ def parse_jira_issues(xmldir, resdir, jira_url, jira_user, jira_password):
                                         'CommentTimestamp': issue_comment_timestamp }
                                  issue_list.append(row)
 
-    user_ids = author_ids.keys()
+    user_ids = list(author_ids.keys())
     jira_instance = jira.JIRA(server=jira_url, basic_auth=(jira_user, jira_password))
 
     total = len(user_ids)

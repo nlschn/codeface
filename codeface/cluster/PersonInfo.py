@@ -195,7 +195,7 @@ class PersonInfo:
         self.commit_list.append(cmt)
 
     def _getLinksReceivedByID(self, link_hash, ID):
-        if ID in link_hash.keys():
+        if ID in list(link_hash.keys()):
             return link_hash[ID]
         else:
             return RelationWeights()

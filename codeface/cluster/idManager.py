@@ -17,10 +17,10 @@
 
 import re
 from email.Utils import parseaddr
-from PersonInfo import PersonInfo
+from .PersonInfo import PersonInfo
 from logging import getLogger; log = getLogger(__name__)
-import httplib
-import urllib
+import http.client
+import urllib.request, urllib.parse, urllib.error
 import json
 import string
 import random
@@ -52,7 +52,7 @@ class idManager:
 
         self._idMgrServer = conf["idServiceHostname"]
         self._idMgrPort = conf["idServicePort"]
-        self._conn = httplib.HTTPConnection(self._idMgrServer, self._idMgrPort)
+        self._conn = http.client.HTTPConnection(self._idMgrServer, self._idMgrPort)
 
         # Create a project ID
         self._dbm = dbm
@@ -121,7 +121,7 @@ class idManager:
         """Query the ID database for a contributor ID"""
 
         name = encode_as_utf8(name)
-        params = urllib.urlencode({'projectID': self._projectID,
+        params = urllib.parse.urlencode({'projectID': self._projectID,
                                    'name': name,
                                    'email': email})
 
@@ -135,7 +135,7 @@ class idManager:
                 log.warning("Could not reach ID service. Try to reconnect " \
                             "(attempt {}).".format(retryCount));
                 self._conn.close()
-                self._conn = httplib.HTTPConnection(self._idMgrServer, self._idMgrPort)
+                self._conn = http.client.HTTPConnection(self._idMgrServer, self._idMgrPort)
                 time.sleep(60)
                 #self._conn.ping(True)
                 try:
@@ -177,7 +177,7 @@ class idManager:
 
         # Construct a local instance of PersonInfo for the contributor
         # if it is not yet available
-        if not self.persons.has_key(ID):
+        if ID not in self.persons:
             self.persons[ID] = PersonInfo(self.subsys_names, ID, name, email)
 
         return ID
@@ -190,14 +190,14 @@ class idManager:
             res = self._conn.getresponse()
         except:
             self._conn.close()
-            self._conn = httplib.HTTPConnection(self._idMgrServer, self._idMgrPort)
+            self._conn = http.client.HTTPConnection(self._idMgrServer, self._idMgrPort)
             retryCount = 0
             successful = False
             while (retryCount <= 10 and not successful):
                 log.warning("Could not reach ID service. Try to reconnect " \
                             "(attempt {}).".format(retryCount));
                 self._conn.close()
-                self._conn = httplib.HTTPConnection(self._idMgrServer, self._idMgrPort)
+                self._conn = http.client.HTTPConnection(self._idMgrServer, self._idMgrPort)
                 time.sleep(60)
                 #self._conn.ping(True)
                 try:

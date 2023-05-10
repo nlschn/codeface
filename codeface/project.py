@@ -252,25 +252,25 @@ def conway_analyse(resdir, gitdir, titandir, codeface_conf, project_conf,
 
     # Set defaults for the various analysis choices if they are not explicitly
     # given in the configuration file
-    if "artifactType" not in conf.keys():
+    if "artifactType" not in list(conf.keys()):
         conf["artifactType"] = "file"
         log.info("Conway analysis: No artefact type given, defaulting to 'file'")
 
-    if "dependencyType" not in conf.keys():
+    if "dependencyType" not in list(conf.keys()):
         conf["dependencyType"] = "none"
         log.info("Conway analysis: No dependency type given, defaulting to 'none'")
 
-    if "qualityType" not in conf.keys():
+    if "qualityType" not in list(conf.keys()):
         conf["qualityType"] = "corrective"
         log.info("Conway analysis: No quality type given, defaulting to 'corrective'")
 
-    if "communicationType" not in conf.keys():
+    if "communicationType" not in list(conf.keys()):
         conf["communicationType"] = "mail"
         log.info("Conway analysis: No communication type given, defaulting to 'mail'")
 
     if (conf["communicationType"] == "jira" or conf["communicationType"] == "mail+jira") and \
-        (("issueTrackerType" in conf.keys() and conf["issueTrackerType"] != "jira") or \
-        not("issueTrackerType" in conf.keys())):
+        (("issueTrackerType" in list(conf.keys()) and conf["issueTrackerType"] != "jira") or \
+        not("issueTrackerType" in list(conf.keys()))):
         log.info("Conway analysis only supports jira for bugtracking information, exiting")
         return
 
@@ -318,7 +318,7 @@ def conway_analyse(resdir, gitdir, titandir, codeface_conf, project_conf,
 
         #########
         # STAGE 2: Connect commits and jira issues
-        if "communicationType" in conf.keys() and \
+        if "communicationType" in list(conf.keys()) and \
             (conf["communicationType"] == "jira" or conf["communicationType"] == "mail+jira"):
             exe = abspath(resource_filename(__name__, "R/conway_metrics.r"))
             cwd, _ = pathsplit(exe)
@@ -344,7 +344,7 @@ def conway_analyse(resdir, gitdir, titandir, codeface_conf, project_conf,
 
         #######
         # STAGE 3: Obtain DSM using understand
-        if "dependencyType" in conf.keys() and conf["dependencyType"] == "dsm":
+        if "dependencyType" in list(conf.keys()) and conf["dependencyType"] == "dsm":
             exe = abspath(resource_filename(__name__, "R/gen_dsm.r"))
             cwd, _ = pathsplit(exe)
             cmd = []
@@ -380,7 +380,7 @@ def conway_analyse(resdir, gitdir, titandir, codeface_conf, project_conf,
         cmd.extend(("-p", project_conf))
         cmd.append(project_resdir)
         cmd.append(str(i+1))
-        if "dependencyType" in conf.keys() and conf["dependencyType"] == "dsm":
+        if "dependencyType" in list(conf.keys()) and conf["dependencyType"] == "dsm":
             deps=[s3]
         else:
             deps=[s2]

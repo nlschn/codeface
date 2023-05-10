@@ -119,8 +119,8 @@ def get_parser():
 def cmd_run(args):
     '''Dispatch the ``run`` command.'''
     # First make all the args absolute
-    resdir, gitdir = map(os.path.abspath, (args.resdir, args.gitdir))
-    codeface_conf, project_conf = map(os.path.abspath, (args.config, args.project))
+    resdir, gitdir = list(map(os.path.abspath, (args.resdir, args.gitdir)))
+    codeface_conf, project_conf = list(map(os.path.abspath, (args.config, args.project)))
     logfile = args.logfile
     if logfile:
         logfile = os.path.abspath(logfile)
@@ -132,8 +132,8 @@ def cmd_run(args):
 def cmd_ml(args):
     '''Dispatch the ``ml`` command.'''
     # First make all the args absolute
-    resdir, mldir = map(os.path.abspath, (args.resdir, args.mldir))
-    codeface_conf, project_conf = map(os.path.abspath, (args.config, args.project))
+    resdir, mldir = list(map(os.path.abspath, (args.resdir, args.mldir)))
+    codeface_conf, project_conf = list(map(os.path.abspath, (args.config, args.project)))
     logfile = args.logfile
     if logfile:
         logfile = os.path.abspath(logfile)
@@ -145,8 +145,8 @@ def cmd_ml(args):
 def cmd_conway(args):
     '''Dispatch the ``conway`` command.'''
     # First make all the args absolute
-    resdir, gitdir, titandir = map(os.path.abspath, (args.resdir, args.gitdir, args.titandir))
-    codeface_conf, project_conf = map(os.path.abspath, (args.config, args.project))
+    resdir, gitdir, titandir = list(map(os.path.abspath, (args.resdir, args.gitdir, args.titandir)))
+    codeface_conf, project_conf = list(map(os.path.abspath, (args.config, args.project)))
     logfile = args.logfile
     if logfile:
         logfile = os.path.abspath(logfile)

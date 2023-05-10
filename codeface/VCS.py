@@ -37,17 +37,17 @@
 import itertools
 import readline
 
-import commit
-import fileCommit
+from . import commit
+from . import fileCommit
 import re
 import os
 import bisect
 import ctags
 import tempfile
 #import DBAnalysis
-import sourceAnalysis
+from . import sourceAnalysis
 import shutil
-from fileCommit import FileDict
+from .fileCommit import FileDict
 from progressbar import ProgressBar, Percentage, Bar, ETA
 from ctags import CTags, TagEntry
 from logging import getLogger
@@ -187,7 +187,7 @@ class VCS:
 
     def _subsysIsValid(self, subsys):
         """Check if subsystem subsys is valid."""
-        return subsys=="__main__" or subsys in self.subsys_description.keys()
+        return subsys=="__main__" or subsys in list(self.subsys_description.keys())
 
 
 def parse_sep_line(line):
@@ -589,7 +589,7 @@ class gitVCS (VCS):
         # .. and proceed with the subsystems. We "recycle" the already
         # created commit instances by placing them on subsystem specific
         # lists.
-        for subsys in self.subsys_description.keys():
+        for subsys in list(self.subsys_description.keys()):
             clist = self._getCommitIDsLL(self.rev_start, self.rev_end,
                                          self.subsys_description[subsys])
 
@@ -826,7 +826,7 @@ class gitVCS (VCS):
         cmt_subsystems = cmt.getSubsystemsTouched()
         touched_subsys = False
 
-        for subsys in self.subsys_description.keys():
+        for subsys in list(self.subsys_description.keys()):
             if cmt.id in self._commit_id_list_dict[subsys]:
                 cmt_subsystems[subsys] = 1
                 touched_subsys = True
@@ -1002,7 +1002,7 @@ class gitVCS (VCS):
                 match = matches[0]
                 key = match.group(1).replace(" ", "").replace(":", "")
                 value = match.group(3)
-                if key in tag_names_list.keys():
+                if key in list(tag_names_list.keys()):
                     tag_names_list[key].append(value)
                 else:
                     tag_names_list[key] = [value]
@@ -1055,7 +1055,7 @@ class gitVCS (VCS):
 
         if link_type in (LinkType.proximity, LinkType.file,
                          LinkType.feature, LinkType.feature_file):
-            self.addFiles4Analysis(self._commit_dict.keys())
+            self.addFiles4Analysis(list(self._commit_dict.keys()))
             self._prepareFileCommitList(self._fileNames, link_type=link_type)
 
         # _commit_list_dict as computed by _prepareCommitLists() already
@@ -1068,7 +1068,7 @@ class gitVCS (VCS):
         pbar = ProgressBar(widgets=widgets,
                            maxval=len(self._commit_dict)).start()
 
-        for cmt in self._commit_dict.values():
+        for cmt in list(self._commit_dict.values()):
             count += 1
             if count % 20 == 0:
                 pbar.update(count)
@@ -1323,7 +1323,7 @@ class gitVCS (VCS):
         #       this will result in all commits to a single file seen as
         #       related thus the more course grained analysis
 
-        blame_cmt_ids.update( cmt_lines.values() )
+        blame_cmt_ids.update( list(cmt_lines.values()) )
 
     def _parseSrcFileDoxygen(self, src_file):
         log.debug("Running Doxygen analysis")
@@ -1336,7 +1336,7 @@ class gitVCS (VCS):
 
         try:
             file_analysis.run_analysis()
-        except Exception, e:
+        except Exception as e:
             log.warning("doxygen analysis error '{0}' - returning empty result".format(e))
             return {}, []
 
@@ -1550,7 +1550,7 @@ class gitVCS (VCS):
         logMsg = self._getFileCommitInfo(fname, rev_start, rev_end)
 
         #store the commit hash to the fileCommitList
-        cmtList = map(self._Logstring2Commit, logMsg)
+        cmtList = list(map(self._Logstring2Commit, logMsg))
 
         return cmtList
 
