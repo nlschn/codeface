@@ -14,7 +14,7 @@
 # Copyright 2013, Siemens AG, Mitchell Joblin <mitchell.joblin.ext@siemens.com>
 # All Rights Reserved.
 
-from . import codeLine
+import codeLine
 
 class codeBlock:
     '''

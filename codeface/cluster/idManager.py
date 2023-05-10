@@ -17,7 +17,7 @@
 
 import re
 from email.Utils import parseaddr
-from .PersonInfo import PersonInfo
+from PersonInfo import PersonInfo
 from logging import getLogger; log = getLogger(__name__)
 import http.client
 import urllib.request, urllib.parse, urllib.error

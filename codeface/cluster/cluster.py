@@ -19,18 +19,16 @@
 # Copyright 2012, 2013, Siemens AG, Wolfgang Mauerer <wolfgang.mauerer@siemens.com>
 # All Rights Reserved.
 import os
-import csv
-import shelve
 import pickle
 import os.path
-import argparse
-from . import codeBlock
-from . import codeLine
+import codeBlock
+import codeLine
 import math
 import random
 import itertools
 from progressbar import ProgressBar, Percentage, Bar, ETA
-from logging import getLogger; log = getLogger(__name__)
+from logging import getLogger
+log = getLogger(__name__)
 
 from codeface import kerninfo
 from codeface.commit_analysis import (getSignoffCount, getSignoffEtcCount,
