@@ -25,7 +25,7 @@ import json
 import string
 import random
 import time
-from ..util import encode_as_utf8
+from util import encode_as_utf8
 
 class idManager:
     """Provide unique IDs for developers.
