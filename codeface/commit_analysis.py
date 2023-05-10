@@ -21,8 +21,8 @@
 # Copyright 2010, 2011, 2012 by Wolfgang Mauerer <wm@linux-kernel.net>
 # All Rights Reserved.
 
-from .TimeSeries import TimeSeries
-from logging import getLogger;
+from TimeSeries import TimeSeries
+from logging import getLogger
 from linktype import LinkType
 
 log = getLogger(__name__)

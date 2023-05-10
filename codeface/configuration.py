@@ -21,7 +21,7 @@ Encapsulates a configuration as an immutable dict
 
 import yaml
 from collections import Mapping
-from logging import getLogger;
+from logging import getLogger
 from linktype import LinkType
 
 log = getLogger(__name__)

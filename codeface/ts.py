@@ -21,9 +21,9 @@
 import os.path
 import pickle
 import argparse
-from .commit_analysis import createSeries
-from .dbmanager import DBManager, tstamp_to_sql
-from .util import gen_range_path
+from commit_analysis import createSeries
+from dbmanager import DBManager, tstamp_to_sql
+from util import gen_range_path
 
 def doAnalysis(dbfilename, destdir, revrange=None, rc_start=None):
     pkl_file = open(dbfilename, 'rb')

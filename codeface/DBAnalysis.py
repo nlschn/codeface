@@ -16,9 +16,6 @@
 
 '''This class obtains SQL artefacts from data definition language statements'''
 
-import sys
-import pytest
-from .fileCommit import FileDict
 from logging import getLogger
 
 from parse_tablename import parse_create_tbl_stmt, parse_drop_tbl_stmt, parse_alter_tbl_stmt
