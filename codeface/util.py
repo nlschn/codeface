@@ -29,8 +29,7 @@ import unicodedata
 from collections import OrderedDict, namedtuple
 from glob import glob
 from math import sqrt
-from multiprocessing import Process, Queue, JoinableQueue, Lock
-from pickle import dumps, PicklingError
+from multiprocessing import Process, Queue, Lock
 from pkg_resources import resource_filename
 from subprocess import Popen, PIPE
 from tempfile import NamedTemporaryFile, mkdtemp

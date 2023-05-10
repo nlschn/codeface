@@ -26,10 +26,9 @@ from pkg_resources import resource_filename
 
 from glob import glob
 
-from codeface.logger import set_log_level, start_logfile, log
-from codeface.configuration import Configuration
-from codeface.util import execute_command
-from codeface.project import project_analyse, mailinglist_analyse, conway_analyse
+from logger import set_log_level, start_logfile, log
+from util import execute_command
+from project import project_analyse, mailinglist_analyse, conway_analyse
 
 def get_parser():
     parser = argparse.ArgumentParser(prog='codeface',

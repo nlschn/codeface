@@ -41,10 +41,7 @@ from . import commit
 from . import fileCommit
 import re
 import os
-import bisect
-import ctags
 import tempfile
-#import DBAnalysis
 from . import sourceAnalysis
 import shutil
 from .fileCommit import FileDict
