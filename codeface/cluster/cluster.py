@@ -30,16 +30,15 @@ from progressbar import ProgressBar, Percentage, Bar, ETA
 from logging import getLogger
 log = getLogger(__name__)
 
-from codeface import kerninfo
-from codeface.commit_analysis import (getSignoffCount, getSignoffEtcCount,
+from commit_analysis import (getSignoffCount, getSignoffEtcCount,
         getInvolvedPersons)
-from codeface.cluster.PersonInfo import RelationWeight
-from codeface.VCS import gitVCS
-from codeface.dbmanager import DBManager, tstamp_to_sql
-from .PersonInfo import PersonInfo
-from .idManager import idManager
-from codeface.linktype import LinkType
-from codeface.util import encode_as_utf8
+from cluster.PersonInfo import RelationWeight
+from VCS import gitVCS
+from dbmanager import DBManager, tstamp_to_sql
+from cluster.PersonInfo import PersonInfo
+from cluster.idManager import idManager
+from linktype import LinkType
+from util import encode_as_utf8
 
 #Global Constants
 SEED = 448
