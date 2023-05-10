@@ -5,6 +5,5 @@ popd > /dev/null
 
 cd ${CODEFACE}
 PYTHONPATH="$PYTHONPATH:$CODEFACE"
-PYTHONPATH="$PYTHONPATH:$CODEFACE/codeface"
 echo ${PYTHONPATH}
 python codeface/runCli.py "$@"
