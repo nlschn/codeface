@@ -16,6 +16,8 @@
 # Copyright 2013 by Siemens AG, Johannes Ebke <johannes.ebke.ext@siemens.com>
 # All Rights Reserved.
 
+# TODO: update version number (not necessarily now, could be later) and update url to se-sic
+
 from setuptools import setup, find_packages
 
 setup(name='codeface',
