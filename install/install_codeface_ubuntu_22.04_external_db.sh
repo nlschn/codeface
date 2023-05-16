@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Parameters: [external_db_1.conf] [external_db_2.conf] ...
+
 ./install_repositories.sh
 ./install_common_external_db.sh
 ./install_codeface_R.sh
