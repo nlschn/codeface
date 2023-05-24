@@ -24,7 +24,7 @@ fi
 (cd ${TMPDIR} &&
     tar -xvf ${TMPDIR}/cppstats.tar.gz &&
     cd cppstats-${CPPSTATS_VERSION} &&
-    sudo python setup.py install)
+    sudo python3 setup.py install)
 
 # TODO: fix installation of SRCML version
 echo "Providing srcML"
