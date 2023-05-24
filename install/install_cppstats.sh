@@ -28,7 +28,7 @@ fi
 
 # TODO: fix installation of SRCML version
 echo "Providing srcML"
-SRCML_URL="http://131.123.42.38/lmcrs/beta/srcML-Ubuntu14.04-64.deb"
+SRCML_URL="http://131.123.42.38/lmcrs/v1.0.0/srcml_1.0.0-1_ubuntu20.04.deb"
 wget --quiet ${SRCML_URL} -O ${TMPDIR}/srcML.deb
 if [ ! -e ${TMPDIR}/srcML.deb ]
 then
