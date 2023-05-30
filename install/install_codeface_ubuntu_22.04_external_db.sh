@@ -9,4 +9,4 @@ cd ..
 ./install/install_codeface_node.sh
 ./install/install_codeface_python.sh
 ./install/install_cppstats.sh
-./install/setup_database_external.sh
+./install/setup_database_external.sh "$@"
