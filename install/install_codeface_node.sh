@@ -4,8 +4,8 @@
 
 echo "Providing id_service"
 
-sudo DEBIAN_FRONTEND=noninteractive apt-get -qqy install npm
 cd ../id_service
+sudo DEBIAN_FRONTEND=noninteractive apt-get -qqy install npm
 mkdir node_modules
 npm set ca null
 npm install --no-bin-links
