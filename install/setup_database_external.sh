@@ -5,7 +5,7 @@
 
 echo "Providing codeface database"
 
-DATAMODEL="../../../datamodel/codeface_schema.sql"
+DATAMODEL="../../datamodel/codeface_schema.sql"
 mysql -ucodeface -pcodeface < ${DATAMODEL}
 
 # Read each given config file
