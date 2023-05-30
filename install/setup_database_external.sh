@@ -5,7 +5,6 @@
 
 echo "Providing codeface database"
 
-ls
 DATAMODEL="datamodel/codeface_schema.sql"
 mysql -ucodeface -pcodeface < ${DATAMODEL}
 
