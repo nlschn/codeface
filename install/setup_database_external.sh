@@ -4,8 +4,8 @@
 # SPDX-License-Identifier:	Apache-2.0 BSD-2-Clause GPL-2.0+ MIT WTFPL
 
 echo "Providing codeface database"
-
-DATAMODEL="../../datamodel/codeface_schema.sql"
+ls
+DATAMODEL="datamodel/codeface_schema.sql"
 mysql -ucodeface -pcodeface < ${DATAMODEL}
 
 # Read each given config file
