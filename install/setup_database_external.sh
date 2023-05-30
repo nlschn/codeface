@@ -24,7 +24,7 @@ do
     echo $(awk -F": " '!($1 ~ /#/) && $0 ~ /:/ {print $1 "=" $2;}' "$var")
     export $(awk -F": " '!($1 ~ /#/) && $0 ~ /:/ {print $1 "=" $2;}' "$var")
     # use the exported variables to initialise the db from the config
-    cat ${DATAMODEL} | sed -e 's/codeface/"$dbname"/g' | mysql -h${dbhost} -u${dbuser} -p${dbpwd}
+    cat ${DATAMODEL} | sed -e "s/codeface/${dbname}/g" | mysql -h${dbhost} -u${dbuser} -p${dbpwd}
 done
 
 
