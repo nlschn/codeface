@@ -9,4 +9,4 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -qqy install npm
 mkdir node_modules
 npm set ca null
 npm install --no-bin-links
-cd install
+cd ../install
