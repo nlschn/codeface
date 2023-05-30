@@ -26,8 +26,13 @@ fi
     cd cppstats-${CPPSTATS_VERSION} &&
     sudo python3 setup.py install)
 
-# TODO: fix installation of SRCML version
-echo "Providing srcML"
+
+echo "Installing dependency libssl1.1 for srcML"
+echo "deb http://security.ubuntu.com/ubuntu focal-security main" | sudo tee /etc/apt/sources.list.d/focal-security.list
+sudo apt-get update
+sudo apt-get install libssl1.1
+
+echo "Installing srcML"
 SRCML_URL="http://131.123.42.38/lmcrs/v1.0.0/srcml_1.0.0-1_ubuntu20.04.deb"
 wget --quiet ${SRCML_URL} -O ${TMPDIR}/srcML.deb
 if [ ! -e ${TMPDIR}/srcML.deb ]
