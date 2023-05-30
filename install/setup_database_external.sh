@@ -12,6 +12,9 @@ mysql -ucodeface -pcodeface < ${DATAMODEL}
 for var in "$@"
 do
     echo "Configurig database $var"
+
+    if [ -f "$var" ]; then
+
     # https://stackoverflow.com/questions/17001849/awk-partly-string-match-if-column-word-partly-matches
     # This does fancy parsing stuff
     # -F": " is used to split each line into two coloumns, separated by the colon and the space
@@ -24,6 +27,10 @@ do
     export $(awk -F": " '!($1 ~ /#/) && $0 ~ /:/ {print $1 "=" $2;}' "$var")
     # use the exported variables to initialise the db from the config
     cat ${DATAMODEL} | sed -e "s/codeface/${dbname}/g" | mysql -h${dbhost} -u${dbuser} -p${dbpwd}
+    else
+        echo "$var does not exist. Could not configure database"
+    fi
+
 done
 
 
