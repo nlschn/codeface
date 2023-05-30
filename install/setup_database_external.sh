@@ -12,6 +12,7 @@ mysql -ucodeface -pcodeface < ${DATAMODEL}
 # Read each given config file
 for var in "$@"
 do
+    echo "Configurig database $var"
     # https://stackoverflow.com/questions/17001849/awk-partly-string-match-if-column-word-partly-matches
     # This does fancy parsing stuff
     # -F": " is used to split each line into two coloumns, separated by the colon and the space
