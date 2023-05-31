@@ -1,7 +1,7 @@
 git reset --hard
 git pull
 
-sudo chmod +x run.sh
+sudo chmod +x run/run.sh
 sudo chmod +x update.sh
 
 FILES="install/*.sh"
