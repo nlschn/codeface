@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Source the run configuration
-source run.conf
+source run/run.conf
 
 # Start the id service
-cd "../id_service"
+cd "id_service"
 nodejs id_service.js "${CFCONF}" "info" &
 IDSERVICE=$!
 cd ..
