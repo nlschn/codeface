@@ -1,26 +1,29 @@
 #!/bin/bash
 
 # Source the run configuration
-source run/run.conf
+echo "Source config"
+source run.conf
+
+cd codeface
 
 # Start the id service
-cd "id_service"
-nodejs id_service.js "${CFCONF}" "info" &
+echo "Start id service"
+nodejs id_service/id_service.js "${CFCONF}" "info" &
 IDSERVICE=$!
-cd ..
 
 # Run codeface with the given parameters
-if [ $0 == "run" ]; then
-    echo "Running codeface with standard analysis"
+echo "Run codeface"
+if [ $1 == "run" ]; then
     codeface -j 1 -l "devinfo" run --recreate -c "${CFCONF}" -p "${CSCONF}" "${RESULTS}" "${REPOS}" > "${LOGS}/codeface_run.log" 2>&1
-elif [ $0 == "ml" ]; then
-  echo "Running codeface with mailing list analysis"
+elif [ $1 == "ml" ]; then
     codeface -j 1 -l "devinfo" ml -c "${CFCONF}" -p "${CSCONF}" "${RESULTS}" "${MAILINGLISTS}" > "${LOGS}/codeface_ml.log" 2>&1
-elif [ $0 == "conway" ]; then
-    echo "Running codeface with conway analysis"
+elif [ $1 == "conway" ]; then
     codeface -l "devinfo" conway -c "${CFCONF}" -p "${CSCONF}" "${RESULTS}" "${REPOS}" "${TITAN}" > "${LOGS}/codeface_conway.log" 2>&1
+else
+    echo "Missing parameter. Use run, ml, or conway."
 fi
 
 # Kill the id-service
+echo "Kill id service"
 kill $IDSERVICE
 
