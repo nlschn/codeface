@@ -22,7 +22,7 @@ Provides
 import argparse
 import unittest
 import os
-from pkg_resources import resource_filename
+#from pkg_resources import resource_filename
 
 from glob import glob
 

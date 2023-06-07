@@ -1,7 +1,6 @@
 git reset --hard
 git pull
 
-ls
 sudo chmod +x run/run.sh
 sudo chmod +x update.sh
 
