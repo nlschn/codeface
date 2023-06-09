@@ -22,7 +22,7 @@ Provides
 import argparse
 import unittest
 import os
-#from pkg_resources import resource_filename
+from importlib_resources import files
 
 from glob import glob
 
@@ -154,26 +154,28 @@ def cmd_conway(args):
     return 0
 
 def cmd_dynamic(args):
-    dyn_directory = resource_filename(__name__, "R/shiny/apps")
+    # dyn_directory = resource_filename(__name__, "R/shiny/apps")
+    ref = importlib_resources.files(__name__) / "R/shiny/apps"
 
-    if args.graph is None and not(args.list):
-        log.critical("No dynamic graph given!")
+    with importlib_resources.as_file(ref) as dyn_directory:
+        if args.graph is None and not args.list:
+            log.critical("No dynamic graph given!")
 
-    if args.list or args.graph is None:
-        print('List of possible dynamic graphs:')
-        for s in sorted(os.listdir(dyn_directory)):
-            if os.path.isdir(os.path.join(dyn_directory, s)):
-                print(" * " + s)
-        return 1
+        if args.list or args.graph is None:
+            print('List of possible dynamic graphs:')
+            for s in sorted(os.listdir(dyn_directory)):
+                if os.path.isdir(os.path.join(dyn_directory, s)):
+                    print(" * " + s)
+            return 1
 
-    cwd = os.path.join(dyn_directory, args.graph)
-    cfg = os.path.abspath(args.config)
-    if not os.path.exists(cwd):
-        log.critical('Path "{}" not found!'.format(cwd))
-        return 1
-    Rcode = "library(shiny); runApp(host='0.0.0.0', port={})".format(args.port)
-    cmd = ["Rscript", "-e", Rcode, "-c", cfg]
-    execute_command(cmd, direct_io=True, cwd=cwd)
+        cwd = os.path.join(dyn_directory, args.graph)
+        cfg = os.path.abspath(args.config)
+        if not os.path.exists(cwd):
+            log.critical('Path "{}" not found!'.format(cwd))
+            return 1
+        Rcode = "library(shiny); runApp(host='0.0.0.0', port={})".format(args.port)
+        cmd = ["Rscript", "-e", Rcode, "-c", cfg]
+        execute_command(cmd, direct_io=True, cwd=cwd)
 
 def cmd_test(args):
     '''Sub-command handler for the ``test`` command.'''

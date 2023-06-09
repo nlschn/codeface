@@ -7,6 +7,7 @@ echo "Providing codeface python"
 sudo pip3 install --upgrade setuptools
 sudo pip3 install --upgrade mock
 sudo pip3 install --upgrade subprocess32
+sudo pip3 instal importlib_resources
 
 # Only development mode works
 # install fails due to R scripts accessing unbundled resources!
