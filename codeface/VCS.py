@@ -37,8 +37,8 @@
 import itertools
 import readline
 
-import commit
-import fileCommit
+import .commit
+import .fileCommit
 import re
 import os
 import tempfile
@@ -48,7 +48,7 @@ from fileCommit import FileDict
 from progressbar import ProgressBar, Percentage, Bar, ETA
 from ctags import CTags, TagEntry
 from logging import getLogger
-from linktype import LinkType
+from .linktype import LinkType
 
 log = getLogger(__name__)
 from util import execute_command, encode_as_utf8

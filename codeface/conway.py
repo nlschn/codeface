@@ -25,8 +25,8 @@ from time import sleep
 from logging import getLogger; log = getLogger(__name__)
 from progressbar import ProgressBar, Percentage, Bar, ETA
 
-from dbmanager import DBManager
-from util import execute_command, encode_items_as_utf8
+from .dbmanager import DBManager
+from .util import execute_command, encode_items_as_utf8
 from os import listdir
 
 import xml.etree.cElementTree as ET

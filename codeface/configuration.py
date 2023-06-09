@@ -22,7 +22,7 @@ Encapsulates a configuration as an immutable dict
 import yaml
 from collections.abc import Mapping
 from logging import getLogger
-from linktype import LinkType
+from .linktype import LinkType
 
 log = getLogger(__name__)
 from tempfile import NamedTemporaryFile
