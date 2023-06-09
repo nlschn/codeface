@@ -28,7 +28,16 @@ fi
 
 
 echo "Installing dependency libssl1.1 for srcML"
-echo "deb http://security.ubuntu.com/ubuntu focal-security main" | sudo tee /etc/apt/sources.list.d/focal-security.list
+REPO="deb http://security.ubuntu.com/ubuntu focal-security main"
+APTFILE="/etc/apt/sources.list.d/focal-security.list"
+# This is for Ubuntu 22.04
+if grep -q "$REPO" "$APTFILE" ; then
+    echo "libssl repo is already in sources.list"
+else
+    echo "Add libssl repo to sources.list"
+    echo "$REPO" | sudo tee "$APTFILE"
+fi
+
 sudo apt-get update
 sudo apt-get install libssl1.1
 
