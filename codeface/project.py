@@ -18,12 +18,12 @@ from logging import getLogger; log = getLogger(__name__)
 from pkg_resources import resource_filename
 from os.path import join as pathjoin, split as pathsplit, abspath
 
-from dbmanager import DBManager
-from configuration import Configuration, ConfigurationError
+from .dbmanager import DBManager
+from .configuration import Configuration, ConfigurationError
 from cluster.cluster import doProjectAnalysis, LinkType
-from ts import dispatch_ts_analysis
-from conway import dispatch_jira_processing, parseCommitLoC
-from util import (execute_command, generate_reports, layout_graph, gen_range_path,
+from .ts import dispatch_ts_analysis
+from .conway import dispatch_jira_processing, parseCommitLoC
+from .util import (execute_command, generate_reports, layout_graph, gen_range_path,
                    check4ctags, check4cppstats, BatchJobPool, generate_analysis_windows,
                    gen_prefix, get_analysis_windows)
 
