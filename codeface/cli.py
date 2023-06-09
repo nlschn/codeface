@@ -22,7 +22,7 @@ Provides
 import argparse
 import unittest
 import os
-#from importlib_resources import files
+import importlib_resources
 
 from glob import glob
 import logger
@@ -155,10 +155,9 @@ def cmd_conway(args):
 def cmd_dynamic(args):
     # dyn_directory = resource_filename(__name__, "R/shiny/apps")
     ref = importlib_resources.files(__name__) / "R/shiny/apps"
-
     with importlib_resources.as_file(ref) as dyn_directory:
         if args.graph is None and not args.list:
-            log.critical("No dynamic graph given!")
+            logger.log.critical("No dynamic graph given!")
 
         if args.list or args.graph is None:
             print('List of possible dynamic graphs:')
@@ -170,7 +169,7 @@ def cmd_dynamic(args):
         cwd = os.path.join(dyn_directory, args.graph)
         cfg = os.path.abspath(args.config)
         if not os.path.exists(cwd):
-            log.critical('Path "{}" not found!'.format(cwd))
+            logger.log.critical('Path "{}" not found!'.format(cwd))
             return 1
         Rcode = "library(shiny); runApp(host='0.0.0.0', port={})".format(args.port)
         cmd = ["Rscript", "-e", Rcode, "-c", cfg]

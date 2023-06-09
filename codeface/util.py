@@ -30,7 +30,7 @@ from collections import OrderedDict, namedtuple
 from glob import glob
 from math import sqrt
 from multiprocessing import Process, Queue, Lock
-from pkg_resources import resource_filename
+import importlib_resources
 from subprocess import Popen, PIPE
 from tempfile import NamedTemporaryFile, mkdtemp
 from time import sleep
@@ -338,13 +338,15 @@ def generate_report(start_rev, end_rev, resdir):
     log.devinfo("  -> Generating report")
     report_base = "report-{0}_{1}".format(start_rev, end_rev)
 
-    # Run perl script to generate report LaTeX file
-    cmd = []
-    cmd.append(resource_filename(__name__, "perl/create_report.pl"))
-    cmd.append(resdir)
-    cmd.append("{0}--{1}".format(start_rev, end_rev))
-    with open(os.path.join(resdir, report_base + ".tex"), 'w') as f:
-        f.write(execute_command(cmd))
+    ref = importlib_resources.files(__name__) / "perl/create_report.pl"
+    with importlib_resources.as_file(ref) as dir:
+        # Run perl script to generate report LaTeX file
+        cmd = []
+        cmd.append(dir)
+        cmd.append(resdir)
+        cmd.append("{0}--{1}".format(start_rev, end_rev))
+        with open(os.path.join(resdir, report_base + ".tex"), 'w') as f:
+            f.write(execute_command(cmd))
 
     # Compile report with lualatex
     cmd = []
