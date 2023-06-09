@@ -22,7 +22,7 @@ Provides
 import argparse
 import unittest
 import os
-from importlib_resources import files
+#from importlib_resources import files
 
 from glob import glob
 
