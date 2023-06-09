@@ -25,7 +25,7 @@ import os
 #from importlib_resources import files
 
 from glob import glob
-
+import logger
 from logger import set_log_level, start_logfile, log
 from util import execute_command
 from project import project_analyse, mailinglist_analyse, conway_analyse
