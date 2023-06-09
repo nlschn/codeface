@@ -7,7 +7,8 @@ echo "Providing codeface python"
 sudo pip3 install --upgrade setuptools
 sudo pip3 install --upgrade mock
 sudo pip3 install --upgrade subprocess32
-sudo pip3 instal importlib_resources
+pip3 instal importlib_resources
+pip3 install ftfy
 
 # Only development mode works
 # install fails due to R scripts accessing unbundled resources!
