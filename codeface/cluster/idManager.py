@@ -17,7 +17,7 @@
 
 import re
 from email.utils import parseaddr
-from cluster.PersonInfo import PersonInfo
+from .cluster.PersonInfo import PersonInfo
 from logging import getLogger; log = getLogger(__name__)
 import http.client
 import urllib.request, urllib.parse, urllib.error
@@ -25,7 +25,7 @@ import json
 import string
 import random
 import time
-from util import encode_as_utf8
+from .util import encode_as_utf8
 
 class idManager:
     """Provide unique IDs for developers.

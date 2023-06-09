@@ -16,7 +16,7 @@
 # All Rights Reserved.
 
 from logging import getLogger;
-from linktype import LinkType
+from .linktype import LinkType
 
 log = getLogger(__name__)
 

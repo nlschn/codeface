@@ -21,8 +21,8 @@
 import os
 import pickle
 import os.path
-import cluster.codeBlock
-import cluster.codeLine
+import .cluster.codeBlock
+import .cluster.codeLine
 import math
 import random
 import itertools
@@ -30,15 +30,14 @@ from progressbar import ProgressBar, Percentage, Bar, ETA
 from logging import getLogger
 log = getLogger(__name__)
 
-from commit_analysis import (getSignoffCount, getSignoffEtcCount,
-        getInvolvedPersons)
-from cluster.PersonInfo import RelationWeight
-from VCS import gitVCS
-from dbmanager import DBManager, tstamp_to_sql
-from cluster.PersonInfo import PersonInfo
-from cluster.idManager import idManager
-from linktype import LinkType
-from util import encode_as_utf8
+from .commit_analysis import (getSignoffCount, getSignoffEtcCount, getInvolvedPersons)
+from .cluster.PersonInfo import RelationWeight
+from .VCS import gitVCS
+from .dbmanager import DBManager, tstamp_to_sql
+from .cluster.PersonInfo import PersonInfo
+from .cluster.idManager import idManager
+from .linktype import LinkType
+from .util import encode_as_utf8
 
 #Global Constants
 SEED = 448
