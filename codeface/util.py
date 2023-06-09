@@ -37,7 +37,7 @@ from time import sleep
 from threading import enumerate as threading_enumerate
 from queue import Empty
 from datetime import timedelta, datetime
-from ftfy import fix_encoding
+import ftfy
 
 # Represents a job submitted to the batch pool.
 BatchJobTuple = namedtuple('BatchJobTuple', ['id', 'func', 'args', 'kwargs',
@@ -576,7 +576,7 @@ def encode_as_utf8(string):
         return string
 
     # convert to real unicode-utf8 encoded string, fix_text ensures proper encoding
-    new_string = fix_encoding(string)
+    new_string = ftfy.fix_encoding(string)
 
     # remove unicode characters from "Specials" block
     # see: https://www.compart.com/en/unicode/block/U+FFF0
