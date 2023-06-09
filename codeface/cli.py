@@ -26,7 +26,7 @@ import os
 
 from glob import glob
 import logger
-from util import execute_command
+from .util import execute_command
 from project import project_analyse, mailinglist_analyse, conway_analyse
 
 def get_parser():
