@@ -27,7 +27,7 @@ import importlib_resources
 from glob import glob
 import logger
 from .util import execute_command
-from project import project_analyse, mailinglist_analyse, conway_analyse
+from .project import project_analyse, mailinglist_analyse, conway_analyse
 
 def get_parser():
     parser = argparse.ArgumentParser(prog='codeface',
