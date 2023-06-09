@@ -20,7 +20,7 @@
 import MySQLdb as mdb
 import time
 from datetime import datetime
-from .logging import getLogger
+from logging import getLogger
 from contextlib import contextmanager
 
 # create logger
