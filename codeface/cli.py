@@ -26,7 +26,6 @@ import os
 
 from glob import glob
 import logger
-from logger import set_log_level, start_logfile, log
 from util import execute_command
 from project import project_analyse, mailinglist_analyse, conway_analyse
 
@@ -233,9 +232,9 @@ def run(argv):
     parser = get_parser()
     # Note: The first argument of argv is the name of the command
     args = parser.parse_args(argv[1:])
-    set_log_level(args.loglevel)
+    logger.set_log_level(args.loglevel)
     if args.logfile:
-        start_logfile(args.logfile, 'debug')
+        logger.start_logfile(args.logfile, 'debug')
     return args.func(args)
 
 def main():
