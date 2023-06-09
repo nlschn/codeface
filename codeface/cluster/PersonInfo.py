@@ -15,8 +15,8 @@
 # Copyright 2012, 2013, Siemens AG, Wolfgang Mauerer <wolfgang.mauerer@siemens.com>
 # All Rights Reserved.
 
-from logging import getLogger;
-from .linktype import LinkType
+from logging import getLogger
+from ..linktype import LinkType
 
 log = getLogger(__name__)
 
