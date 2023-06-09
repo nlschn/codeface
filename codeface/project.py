@@ -20,7 +20,7 @@ from os.path import join as pathjoin, split as pathsplit, abspath
 
 from .dbmanager import DBManager
 from .configuration import Configuration, ConfigurationError
-from .cluster.cluster import doProjectAnalysis, LinkType
+from cluster.cluster import doProjectAnalysis, LinkType
 from .ts import dispatch_ts_analysis
 from .conway import dispatch_jira_processing, parseCommitLoC
 from .util import (execute_command, generate_reports, layout_graph, gen_range_path,
