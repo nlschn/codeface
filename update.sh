@@ -1,6 +1,8 @@
 git reset --hard
 git pull
 
+cd ~/codeface-project/codeface
+
 sudo chmod +x run/run.sh
 sudo chmod +x update.sh
 
@@ -11,3 +13,5 @@ do
   # take action on each file. $f store current file name
   sudo chmod +x "$f"
 done
+
+cd ~/codeface-project/
