@@ -37,8 +37,8 @@
 import itertools
 import readline
 
-import .commit
-import .fileCommit
+import commit
+import fileCommit
 import re
 import os
 import tempfile
