@@ -34,11 +34,11 @@
 # VCS-specific.
 # TODO: Unify range handling. Either a range is always a list, or always
 # represented by two parameters.
+
 import itertools
 import readline
-
-import commit
-import fileCommit
+from .commit import *
+from .fileCommit import *
 import re
 import os
 import tempfile
@@ -765,7 +765,7 @@ class gitVCS (VCS):
             log.critical("_Logstring2Commit could not parse log string!")
             raise Error("_Logstring2Commit could not parse log string!")
 
-        cmt = commit.Commit()
+        cmt = Commit()
         cmt.cdate = match.group(1)
         cmt.id = match.group(2)
         cmt.adate = match.group(3)
@@ -1182,7 +1182,7 @@ class gitVCS (VCS):
 
             #create fileCommit object, one per filename to be
             #stored in _fileCommit_dict
-            file_commit = fileCommit.FileCommit()
+            file_commit = FileCommit()
             file_commit.filename = fname
 
             #get commit objects for the given file within revision range
@@ -1608,7 +1608,7 @@ class gitVCS (VCS):
            file_layout.append(line)
 
        # test function call
-       file_commit = fileCommit.FileCommit()
+       file_commit = FileCommit()
        file_commit.filename = filePath
        funcLines = self._getFunctionLines(file_layout, file_commit)
 
