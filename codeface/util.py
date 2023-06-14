@@ -447,8 +447,7 @@ def parse_iso_git_date(date_string):
     # this way we don't need the above workaround, currently %z isn't
     # working as documented
     fmt = "%Y-%m-%d %H:%M:%S"
-    logging.error(date_string.decode('utf-8'))
-    parsed_date = datetime.strptime(date_string[:-6], fmt)
+    parsed_date = datetime.strptime(date_string[:-6].decode('utf-8'), fmt)
     parsed_date -= delta
     return parsed_date
 
