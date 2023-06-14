@@ -543,7 +543,7 @@ def generate_analysis_windows(repo, window_size_months):
 
     # Extract hash values and dates intro seperate lists
     revs_hash = [rev[0] for rev in revs]
-    revs_date = [rev[2].split(" ")[0] for rev in revs]
+    revs_date = [rev[2].split(b" ")[0] for rev in revs]
 
     # We cannot detect release canndidate tags in this analysis mode,
     # so provide a list with None entries
