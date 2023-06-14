@@ -535,7 +535,6 @@ def generate_analysis_windows(repo, window_size_months):
 
     # Check that commit dates are monotonic, in some cases the earliest
     # first commit does not carry the earliest commit date
-    logging.error(revs)
     revs = [rev.split(b",") for rev in revs]
     rev_len = len(revs)
     if int(revs[0][1]) > int(revs[1][1]):
