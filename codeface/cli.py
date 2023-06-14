@@ -25,7 +25,8 @@ import os
 import importlib_resources
 
 from glob import glob
-import logger
+
+from . import logger
 from .util import execute_command
 from .project import project_analyse, mailinglist_analyse, conway_analyse
 
