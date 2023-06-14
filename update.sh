@@ -1,7 +1,7 @@
+cd ~/codeface-project/codeface
+
 git reset --hard
 git pull
-
-cd ~/codeface-project/codeface
 
 sudo chmod +x run/run.sh
 sudo chmod +x update.sh
