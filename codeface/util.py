@@ -509,7 +509,6 @@ def generate_analysis_windows(repo, window_size_months):
     revs.extend(rev_end)
 
     while start != end:
-
         try:
             cmd = cmd_base_max1 + [get_before_arg(start)]
             rev_start = execute_command(cmd).splitlines()
@@ -536,6 +535,7 @@ def generate_analysis_windows(repo, window_size_months):
 
     # Check that commit dates are monotonic, in some cases the earliest
     # first commit does not carry the earliest commit date
+    logging.error(revs)
     revs = [rev.split(",") for rev in revs]
     rev_len = len(revs)
     if int(revs[0][1]) > int(revs[1][1]):
