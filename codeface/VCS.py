@@ -44,7 +44,7 @@ import os
 import tempfile
 from .sourceAnalysis import *
 import shutil
-from fileCommit import FileDict
+from .fileCommit import FileDict
 from progressbar import ProgressBar, Percentage, Bar, ETA
 from ctags import CTags, TagEntry
 from logging import getLogger
