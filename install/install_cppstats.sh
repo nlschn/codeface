@@ -14,7 +14,8 @@ pushd .
 TMPDIR=`mktemp -d` || exit 1
 cd "${TMPDIR}"
 
-CPPSTATS_URL="https://codeload.github.com/clhunsen/cppstats/tar.gz/v${CPPSTATS_VERSION}"
+# CPPSTATS_URL="https://codeload.github.com/clhunsen/cppstats/tar.gz/v${CPPSTATS_VERSION}"
+CPPSTATS_URL="https://github.com/nlschn/cppstats/archive/refs/tags/py3-complete.tar.gz"
 wget --quiet ${CPPSTATS_URL} -O ${TMPDIR}/cppstats.tar.gz
 if [ ! -e ${TMPDIR}/cppstats.tar.gz ]
 then
