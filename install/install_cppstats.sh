@@ -6,7 +6,7 @@
 # SPDX-License-Identifier:	Apache-2.0 BSD-2-Clause GPL-2.0+ MIT WTFPL
 
 # TODO: make sure to adjust the cppstats version correctly (as soon as it gets a new version number)
-export CPPSTATS_VERSION=0.9.4
+export CPPSTATS_VERSION="py3-complete"
 
 echo "Providing cppstats $CPPSTATS_VERSION"
 
@@ -24,7 +24,7 @@ then
     exit 1
 fi
 (cd ${TMPDIR} &&
-    tar -xvf ${TMPDIR}/cppstats.tar.gz && read -p "Press any key to resume ..." &&
+    tar -xvf ${TMPDIR}/cppstats.tar.gz &&
     cd cppstats-${CPPSTATS_VERSION} &&
     sudo python3 setup.py install)
 
