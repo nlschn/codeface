@@ -24,7 +24,7 @@ then
     exit 1
 fi
 (cd ${TMPDIR} &&
-    tar -xvf ${TMPDIR}/cppstats.tar.gz &&
+    tar -xvf ${TMPDIR}/cppstats.tar.gz && read -p "Press any key to resume ..." &&
     cd cppstats-${CPPSTATS_VERSION} &&
     sudo python3 setup.py install)
 
