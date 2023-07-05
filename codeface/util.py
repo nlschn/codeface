@@ -379,8 +379,8 @@ def generate_reports(start_rev, end_rev, range_resdir):
 
 def check4ctags():
     # check if the appropriate ctags is installed on the system
-    prog_name    = 'Universal Ctags'
-    prog_version = 'Universal Ctags 5.9.0, Copyright (C) 2015 Universal Ctags Team'
+    prog_name    = b'Universal Ctags'
+    prog_version = b'Universal Ctags 5.9.0, Copyright (C) 2015 Universal Ctags Team'
     cmd = "ctags-universal --version".split()
 
     res = execute_command(cmd, None)
@@ -401,7 +401,7 @@ def check4cppstats():
     """
     # We can not check the version directly as there is no version switch
     # on cppstats We just check if the first line is OK.
-    line = "cppstats v0.9."
+    line = b"cppstats v0.9."
     cmd = "/usr/bin/env cppstats --version".split()
     res = execute_command(cmd)
     if not (res.startswith(line)):
