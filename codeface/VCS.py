@@ -631,8 +631,8 @@ class gitVCS(VCS):
         if self.range_by_date:
             start_date = self._getRevDate(rev_start)
             end_date = self._getRevDate(rev_end)
-            rev_range = ['--since=' + start_date.decode(),
-                         '--before=' + end_date.decode()]
+            rev_range = ['--since=' + start_date,
+                         '--before=' + end_date]
 
         else:
             rev_range = ['{0}..{1}'.format(rev_start, rev_end)]
@@ -743,7 +743,7 @@ class gitVCS(VCS):
         # We need to process the array in inverse order to obtain a
         # time-wise increasing sequence. The result is a list of
         # commit objects
-        self._commit_list_dict["__main__"] = [self._Logstring2Commit(logstring.decode())
+        self._commit_list_dict["__main__"] = [self._Logstring2Commit(logstring)
                                               for logstring in reversed(clist)]
         for cmt in self._commit_list_dict["__main__"]:
             self._commit_dict[cmt.id] = cmt
