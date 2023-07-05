@@ -743,7 +743,7 @@ class gitVCS(VCS):
         # We need to process the array in inverse order to obtain a
         # time-wise increasing sequence. The result is a list of
         # commit objects
-        self._commit_list_dict["__main__"] = [self._Logstring2Commit(logstring)
+        self._commit_list_dict["__main__"] = [self._Logstring2Commit(logstring.decode())
                                               for logstring in reversed(clist)]
         for cmt in self._commit_list_dict["__main__"]:
             self._commit_dict[cmt.id] = cmt
