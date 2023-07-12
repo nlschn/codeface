@@ -489,7 +489,10 @@ def get_feature_lines_from_file(file_layout_src, filename):
     featurefile = tempfile.NamedTemporaryFile(suffix=".csv")
     # generate a source code file from the file_layout_src dictionary
     # and save it to a temporary location
+
+    print(srcFile)
     for line in file_layout_src:
+        print(line)
         srcFile.write(line)
     srcFile.flush()
 
@@ -1570,7 +1573,6 @@ class gitVCS(VCS):
                    ".ru", ".rs", ".ts", ".go", ".dart", ".r", ".rscript", ".vue",  # ".hs",
                    ".pl", ".pm", ".swift", ".lua", ".scala", ".sc", ".lisp", ".lsp",  # ".feature",
                    ".groovy", ".gy", ".gv", ".gvy", ".gsh", ".kt", ".kts", ".ktm", ".es6", ".jsm")
-        print(all_files)
         fileNames = [fileName for fileName in all_files if
                      fileName.lower().endswith(fileExt)]
 
