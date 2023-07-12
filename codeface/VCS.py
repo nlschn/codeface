@@ -1572,7 +1572,7 @@ class gitVCS(VCS):
                    ".groovy", ".gy", ".gv", ".gvy", ".gsh", ".kt", ".kts", ".ktm", ".es6", ".jsm")
 
         fileNames = [fileName for fileName in all_files if
-                     fileName.lower().endswith(fileExt)]
+                     fileName.lower().endswith(fileExt.encode())]
 
         self.setFileNames(fileNames)
 
