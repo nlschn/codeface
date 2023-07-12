@@ -631,6 +631,7 @@ class gitVCS(VCS):
         if self.range_by_date:
             start_date = self._getRevDate(rev_start)
             end_date = self._getRevDate(rev_end)
+            print(end_date)
             rev_range = ['--since=' + start_date,
                          '--before=' + end_date]
 
