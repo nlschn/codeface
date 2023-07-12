@@ -282,7 +282,7 @@ def execute_command(cmd, ignore_errors=False, direct_io=False, cwd=None, silent_
             if not(silent_errors):
                 log.error(msg)
             raise Exception(msg)
-    return stdout.decode()
+    return stdout.decode('utf-8')
 
 def _convert_dot_file(dotfile):
     '''
@@ -447,7 +447,7 @@ def parse_iso_git_date(date_string):
     # this way we don't need the above workaround, currently %z isn't
     # working as documented
     fmt = "%Y-%m-%d %H:%M:%S"
-    parsed_date = datetime.strptime(date_string[:-6].decode('utf-8'), fmt)
+    parsed_date = datetime.strptime(date_string[:-6], fmt)
     parsed_date -= delta
     return parsed_date
 
