@@ -490,10 +490,8 @@ def get_feature_lines_from_file(file_layout_src, filename):
     # generate a source code file from the file_layout_src dictionary
     # and save it to a temporary location
 
-    print(srcFile)
     for line in file_layout_src:
-        print(line)
-        srcFile.write(line)
+        srcFile.write(line.encode())
     srcFile.flush()
 
     # run cppstats analysis on the file to get the feature locations
