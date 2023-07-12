@@ -1570,9 +1570,9 @@ class gitVCS(VCS):
                    ".ru", ".rs", ".ts", ".go", ".dart", ".r", ".rscript", ".vue",  # ".hs",
                    ".pl", ".pm", ".swift", ".lua", ".scala", ".sc", ".lisp", ".lsp",  # ".feature",
                    ".groovy", ".gy", ".gv", ".gvy", ".gsh", ".kt", ".kts", ".ktm", ".es6", ".jsm")
-
+        print(all_files)
         fileNames = [fileName for fileName in all_files if
-                     fileName.lower().endswith(fileExt.encode())]
+                     fileName.lower().endswith(fileExt)]
 
         self.setFileNames(fileNames)
 
