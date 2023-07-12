@@ -658,7 +658,7 @@ class gitVCS(VCS):
             cmd.append("--")
             cmd.extend(dir_list)
 
-        clist = execute_command(cmd).splitlines()
+        clist = execute_command(cmd).decode().splitlines()
 
         # Remember the comment about monotonically increasing time sequences
         # above? True in principle, but unfortunately, a very small number
@@ -739,7 +739,6 @@ class gitVCS(VCS):
         self._commit_id_list_dict = {}
         self._commit_dict = {}
         clist = self._getCommitIDsLL(self.rev_start, self.rev_end)
-        print(clist)
         # We need to process the array in inverse order to obtain a
         # time-wise increasing sequence. The result is a list of
         # commit objects
