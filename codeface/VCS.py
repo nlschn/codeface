@@ -565,7 +565,7 @@ class gitVCS(VCS):
         cmd_base = 'git --git-dir={0} log --no-merges --format=%ct -1'.format(self.repo).split()
         cmd = cmd_base + [rev]
         date = execute_command(cmd)
-        return date.strip().decode()
+        return date.strip()
 
     def _prepareCommitLists(self):
         """Gets the hash values (or whatever is used to identify
@@ -658,7 +658,7 @@ class gitVCS(VCS):
             cmd.append("--")
             cmd.extend(dir_list)
 
-        clist = execute_command(cmd).decode().splitlines()
+        clist = execute_command(cmd).splitlines()
 
         # Remember the comment about monotonically increasing time sequences
         # above? True in principle, but unfortunately, a very small number
