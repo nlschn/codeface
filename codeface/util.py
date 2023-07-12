@@ -401,7 +401,7 @@ def check4cppstats():
     """
     # We can not check the version directly as there is no version switch
     # on cppstats We just check if the first line is OK.
-    line = b"cppstats v0.9."
+    line = "cppstats v0.9."
     cmd = "/usr/bin/env cppstats --version".split()
     res = execute_command(cmd)
     if not (res.startswith(line)):
