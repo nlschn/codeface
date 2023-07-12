@@ -594,6 +594,7 @@ class gitVCS(VCS):
         for subsys in list(self.subsys_description.keys()):
             clist = self._getCommitIDsLL(self.rev_start, self.rev_end,
                                          self.subsys_description[subsys])
+            print(clist)
 
             # Based on this information, prepare a list of commit.Commit
             # objects
