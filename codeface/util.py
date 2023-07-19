@@ -38,6 +38,7 @@ from threading import enumerate as threading_enumerate
 from queue import Empty
 from datetime import timedelta, datetime
 import ftfy
+import unicode
 
 # Represents a job submitted to the batch pool.
 BatchJobTuple = namedtuple('BatchJobTuple', ['id', 'func', 'args', 'kwargs',
