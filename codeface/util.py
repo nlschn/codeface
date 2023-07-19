@@ -38,7 +38,6 @@ from threading import enumerate as threading_enumerate
 from queue import Empty
 from datetime import timedelta, datetime
 import ftfy
-import unicode
 
 # Represents a job submitted to the batch pool.
 BatchJobTuple = namedtuple('BatchJobTuple', ['id', 'func', 'args', 'kwargs',
@@ -284,9 +283,9 @@ def execute_command(cmd, ignore_errors=False, direct_io=False, cwd=None, silent_
                 log.error(msg)
             raise Exception(msg)
     try:
-        stdout.decode("utf-8")
+        stdout.decode("utf-16")
     except UnicodeDecodeError as e:
-        print(unicode(stdout, errors='replace'))
+        print(ftfy.fix_encoding(stdout))
     return stdout.decode()
 
 def _convert_dot_file(dotfile):
