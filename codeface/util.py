@@ -286,7 +286,7 @@ def execute_command(cmd, ignore_errors=False, direct_io=False, cwd=None, silent_
         stdout.decode("utf-8")
     except:
         print("Error")
-        print(stdout)
+        print(''.join('{:02x}'.format(x) for x in stdout))
     return stdout.decode("utf-8")
 
 def _convert_dot_file(dotfile):
