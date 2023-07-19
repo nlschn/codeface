@@ -257,7 +257,7 @@ def execute_command(cmd, ignore_errors=False, direct_io=False, cwd=None, silent_
         if direct_io:
             pipe = Popen(cmd, cwd=cwd)
         else:
-            pipe = Popen(cmd, stdout=PIPE, stderr=PIPE, cwd=cwd, text=True)
+            pipe = Popen(cmd, stdout=PIPE, stderr=PIPE, cwd=cwd)
         stdout, stderr = pipe.communicate()
     except OSError:
         log.error("Error executing command {}!".format(jcmd))
