@@ -257,7 +257,7 @@ def execute_command(cmd, ignore_errors=False, direct_io=False, cwd=None, silent_
         if direct_io:
             pipe = Popen(cmd, cwd=cwd)
         else:
-            pipe = Popen(cmd, stdout=PIPE, stderr=PIPE, cwd=cwd)
+            pipe = Popen(cmd, stdout=PIPE, stderr=PIPE, cwd=cwd, text=True)
         stdout, stderr = pipe.communicate()
     except OSError:
         log.error("Error executing command {}!".format(jcmd))
@@ -282,11 +282,7 @@ def execute_command(cmd, ignore_errors=False, direct_io=False, cwd=None, silent_
             if not(silent_errors):
                 log.error(msg)
             raise Exception(msg)
-    try:
-        stdout.decode("utf-16")
-    except UnicodeDecodeError as e:
-        print(ftfy.fix_encoding(stdout))
-    return stdout.decode()
+    return stdout.decode("utf-8")
 
 def _convert_dot_file(dotfile):
     '''
