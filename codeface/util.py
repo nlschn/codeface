@@ -282,7 +282,7 @@ def execute_command(cmd, ignore_errors=False, direct_io=False, cwd=None, silent_
             if not(silent_errors):
                 log.error(msg)
             raise Exception(msg)
-    return stdout.decode()
+    return stdout.decode("ascii")
 
 def _convert_dot_file(dotfile):
     '''
