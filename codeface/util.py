@@ -283,9 +283,9 @@ def execute_command(cmd, ignore_errors=False, direct_io=False, cwd=None, silent_
                 log.error(msg)
             raise Exception(msg)
     try:
-        stdout.decode()
+        stdout.decode("utf-8")
     except:
-        print(stdout[2963])
+        print()
     return stdout.decode()
 
 def _convert_dot_file(dotfile):
