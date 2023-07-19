@@ -1087,7 +1087,7 @@ class gitVCS(VCS):
         the blame message'''
 
         # build command string
-        cmd = 'git --git-dir={0} blame --encoding=utf-8 '.format(self.repo).split()
+        cmd = 'git --git-dir={0} blame --encoding=UTF-8'.format(self.repo).split()
         cmd.append("-p")  # format for machine consumption
         cmd.append("-w")  # ignore whitespace changes
         cmd.append("-C")  # find copied code (attribute to original)
