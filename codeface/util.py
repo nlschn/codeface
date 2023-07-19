@@ -284,8 +284,8 @@ def execute_command(cmd, ignore_errors=False, direct_io=False, cwd=None, silent_
             raise Exception(msg)
     try:
         stdout.decode("utf-8")
-    except:
-        print(f"<{stdout[1511]}>")
+    except UnicodeDecodeError as e:
+        print(unicode(stdout, errors='replace'))
     return stdout.decode()
 
 def _convert_dot_file(dotfile):
