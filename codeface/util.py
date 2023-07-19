@@ -285,7 +285,7 @@ def execute_command(cmd, ignore_errors=False, direct_io=False, cwd=None, silent_
         try:
             print(stdout.decode("utf-8"))
         except:
-            print()
+            print("Error")
             print(stdout[5888])
     return stdout
 
