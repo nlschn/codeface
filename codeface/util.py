@@ -563,43 +563,44 @@ def encode_as_utf8(string):
     :param string: any string
     :return: the UTF-8 encoded string of type str
     """
+    return string.encode("utf-8", errors="ignore").decode("utf-8", errors="ignore")
 
-    try:
-        string = string.decode("utf-8")
-    except:
-        # if we have a string, we transform it to unicode
-        if isinstance(string, str):
-            string = str(string, "unicode-escape", errors="replace")
-
-    ## maybe not a string/unicode at all, return rightaway
-    if not isinstance(string, str):
-        return string
-
-    # convert to real unicode-utf8 encoded string, fix_text ensures proper encoding
-    new_string = ftfy.fix_encoding(string)
-
-    # remove unicode characters from "Specials" block
-    # see: https://www.compart.com/en/unicode/block/U+FFF0
-    new_string = re.sub(r"\\ufff.", " ", new_string.encode("unicode-escape"))
-
-    # remove all kinds of control characters and emojis
-    # see: https://www.fileformat.info/info/unicode/category/index.htm
-    new_string = "".join(ch if unicodedata.category(ch)[0] != "C" else " " for ch in new_string.decode("unicode-escape"))
-
-    new_string = new_string.encode("utf-8")
-
-    # replace any 4-byte characters with a single space (previously: four_byte_replacement)
-    try:
-        # UCS-4 build
-        four_byte_regex = re.compile("[\U00010000-\U0010ffff]")
-    except re.error:
-        # UCS-2 build
-        four_byte_regex = re.compile("[\uD800-\uDBFF][\uDC00-\uDFFF]")
-
-    four_byte_replacement = r" "  # r":4bytereplacement:"
-    new_string = four_byte_regex.sub(four_byte_replacement, new_string.decode("utf-8")).encode("utf-8")
-
-    return str(new_string)
+    # try:
+    #     string = string.decode("utf-8")
+    # except:
+    #     # if we have a string, we transform it to unicode
+    #     if isinstance(string, str):
+    #         string = str(string, "unicode-escape", errors="replace")
+    #
+    # ## maybe not a string/unicode at all, return rightaway
+    # if not isinstance(string, str):
+    #     return string
+    #
+    # # convert to real unicode-utf8 encoded string, fix_text ensures proper encoding
+    # new_string = ftfy.fix_encoding(string)
+    #
+    # # remove unicode characters from "Specials" block
+    # # see: https://www.compart.com/en/unicode/block/U+FFF0
+    # new_string = re.sub(r"\\ufff.", " ", new_string.encode("unicode-escape"))
+    #
+    # # remove all kinds of control characters and emojis
+    # # see: https://www.fileformat.info/info/unicode/category/index.htm
+    # new_string = "".join(ch if unicodedata.category(ch)[0] != "C" else " " for ch in new_string.decode("unicode-escape"))
+    #
+    # new_string = new_string.encode("utf-8")
+    #
+    # # replace any 4-byte characters with a single space (previously: four_byte_replacement)
+    # try:
+    #     # UCS-4 build
+    #     four_byte_regex = re.compile("[\U00010000-\U0010ffff]")
+    # except re.error:
+    #     # UCS-2 build
+    #     four_byte_regex = re.compile("[\uD800-\uDBFF][\uDC00-\uDFFF]")
+    #
+    # four_byte_replacement = r" "  # r":4bytereplacement:"
+    # new_string = four_byte_regex.sub(four_byte_replacement, new_string.decode("utf-8")).encode("utf-8")
+    #
+    # return str(new_string)
 
 
 def encode_items_as_utf8(items):
