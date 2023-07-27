@@ -1277,7 +1277,7 @@ def writeAdjMatrix2File(id_mgr, outdir, conf):
     # off to utilise this fact for more efficient storage.
 
     link_type = conf["tagging"]
-    out = open(os.path.join(outdir, "adjacencyMatrix.txt"), 'wb')
+    out = open(os.path.join(outdir, "adjacencyMatrix.txt"), 'w')
     idlist = sorted(id_mgr.getPersons().keys())
     # Header
     out.write("" +
@@ -1318,7 +1318,7 @@ def writeAdjMatrixMaxWeight2File(id_mgr, outdir, conf):
     # off to utilise this fact for more efficient storage.
 
     link_type = conf["tagging"]
-    out = open(os.path.join(outdir, "adjacencyMatrix_max_weight.txt"), 'wb')
+    out = open(os.path.join(outdir, "adjacencyMatrix_max_weight.txt"), 'w')
     idlist = sorted(id_mgr.getPersons().keys())
     # Header
     out.write("" +
