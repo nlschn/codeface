@@ -228,6 +228,6 @@ class idManager:
         # to cause parsing problems in later stages
         name = name.replace('\"', "")
         name = name.replace("\'", "")
-        name = string.lstrip(string.rstrip(name))
+        name = name.lstrip().rstrip()
 
         return name
