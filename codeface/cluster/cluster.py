@@ -21,8 +21,9 @@
 import os
 import pickle
 import os.path
-from .codeBlock import *
-from .codeLine import *
+import codeface.cluster.codeBlock as codeBlock
+import codeface.cluster.codeLine as codeLine
+
 import math
 import random
 import itertools
