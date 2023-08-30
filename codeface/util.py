@@ -265,11 +265,11 @@ def execute_command(cmd, ignore_errors=False, direct_io=False, cwd=None, silent_
 
     if pipe.returncode != 0:
         if ignore_errors:
-            if not(silent_errors):
+            if not silent_errors:
                 log.warning("Command '{}' failed with exit code {}. Ignored.".
                             format(jcmd, pipe.returncode))
         else:
-            if not(direct_io) and not(silent_errors):
+            if not direct_io and not silent_errors:
                 log.info("Command '{}' stdout:".format(jcmd))
                 for line in stdout.splitlines():
                     log.info(line)
@@ -279,10 +279,10 @@ def execute_command(cmd, ignore_errors=False, direct_io=False, cwd=None, silent_
             msg = "Command '{}' failed with exit code {}. \n" \
                   "(stdout: {}\nstderr: {})"\
                   .format(jcmd, pipe.returncode, stdout, stderr)
-            if not(silent_errors):
+            if not silent_errors:
                 log.error(msg)
             raise Exception(msg)
-    if stdout:
+    if stdout is not None and stdout is str:
         return stdout.decode("utf-8", "ignore")
 
     return ""
